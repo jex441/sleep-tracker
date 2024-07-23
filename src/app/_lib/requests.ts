@@ -1,19 +1,20 @@
 import { baseUrl } from "./config";
+import User from "@/app/_types/User";
+import { Interval } from "../_types/Interval";
 
-// get users
-export const getUsers = async () => {
+export const getUsers = async (): Promise<User[]> => {
 	const response = await fetch(`${baseUrl}/users.json`);
-	return await response.text();
+	return await response.json();
 };
 
-export const getUser = async (id: string) => {
+export const getUser = async (id: string): Promise<User> => {
 	const response = await fetch(`${baseUrl}/users.json`);
-	// const userData = response.json().filter((user) => user.id === id);
-	return await response.text();
+	const data = await response.json();
+	const user = data.users.filter((user: User) => user.id === id);
+	return user;
 };
 
-// get individual user and sleep data by user id
-export const getSleepData = async (userId: string) => {
-	const response = await fetch(`${baseUrl}/sleep?userId=${userId}.json`);
-	return await response.text();
+export const getUserSleepData = async (userId: string): Promise<Interval[]> => {
+	const response = await fetch(`${baseUrl}/${userId}.json`);
+	return await response.json();
 };
