@@ -1,6 +1,6 @@
 import { baseUrl } from "./config";
 import User from "@/app/_types/User";
-import { Interval } from "../_types/Interval";
+import Interval from "../_types/Interval";
 
 export const getUsers = async (): Promise<User[]> => {
 	const response = await fetch(`${baseUrl}/users.json`);
