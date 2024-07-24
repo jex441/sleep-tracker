@@ -1,18 +1,26 @@
 import { getUser, getUserSleepData } from "../requests";
 import Interval from "@/app/_types/Interval";
+import secondsConverter from "@/app/_lib/utils/secondsConverter";
 
-export const basicUserSleepData = async (userId: string) => {
+export const basicUserSleepData = async (
+	userId: string,
+	intervalId: string | null = null
+) => {
 	const user = await getUser(userId);
-	const sleepData = await getUserSleepData(userId);
+	let sleepData = await getUserSleepData(userId, intervalId);
 
 	const formattedData = sleepData.map((interval: Interval) => {
-		const avgHeartRate = interval.timeseries.heartRate.reduce((accum, cur) => {
-			const [time, val] = cur;
-			accum += val;
-			const avg = accum / interval.timeseries.heartRate.length;
-			return avg;
-		}, 0);
-
+		const avgHeartRateTotal = interval.timeseries.heartRate.reduce(
+			(accum, cur) => {
+				const [time, val] = cur;
+				accum += val;
+				return accum;
+			},
+			0
+		);
+		const avgHeartRate = Math.floor(
+			avgHeartRateTotal / interval.timeseries.heartRate.length
+		);
 		const totalSleepTime = interval.stages.reduce((accum, cur) => {
 			const { stage, duration } = cur;
 			if (stage === "deep" || stage === "light") {
@@ -20,11 +28,11 @@ export const basicUserSleepData = async (userId: string) => {
 			}
 			return accum;
 		}, 0);
-
+		const totalSleepTimeString = secondsConverter(totalSleepTime);
 		return {
 			score: interval.score,
 			ts: interval.ts,
-			totalSleepTime: totalSleepTime,
+			totalSleepTime: totalSleepTimeString,
 			stages: interval.stages,
 			avgHeartRate: avgHeartRate,
 		};

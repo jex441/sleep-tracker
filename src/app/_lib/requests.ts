@@ -15,9 +15,21 @@ export const getUser = async (id: string): Promise<User> => {
 	return user[0];
 };
 
-export const getUserSleepData = async (userId: string): Promise<Interval[]> => {
+export const getUserSleepData = async (
+	userId: string,
+	intervalId: string | null = null
+): Promise<Interval[]> => {
 	const response = await fetch(`${baseUrl}/${userId}.json`);
 	const data = await response.json();
+	const intervals: Interval[] = data.intervals;
 
-	return data.intervals;
+	if (intervalId !== null) {
+		const result = intervals.filter(
+			(interval: Interval) => interval.ts.split("T")[0] === intervalId
+		);
+
+		return result;
+	}
+
+	return intervals;
 };

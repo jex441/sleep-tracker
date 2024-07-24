@@ -1,41 +1,40 @@
-import { getUsers } from "./requests";
+import { getUsers, getUserSleepData } from "./requests";
 import { basicUserSleepData } from "./utils/basicUserSleepData";
-import User from "@/app/_types/User";
 
-export const getUsersOverview = async () => {
+export const getIntervalIds = async (
+	userId: string | null = null
+): Promise<[]> => {
+	const users = await getUsers();
+
+	const data = await Promise.all(
+		users.map(async (user) => await getUserSleepData(user.id))
+	);
+
+	const intervalsSet = new Set();
+
+	data.forEach((userSleepInterval) => {
+		userSleepInterval.forEach((interval) => {
+			const id = interval.ts.split("T")[0];
+			if (!intervalsSet.has(id)) {
+				intervalsSet.add(id);
+				return;
+			}
+		});
+	});
+
+	return Array.from(intervalsSet) as [];
+};
+
+export const getUsersOverview = async (intervalId: string | null = null) => {
 	// get basic data for each user
 	//return one object with basic data for each user for home page. should paginate based on date (interval)
 
 	const users = await getUsers();
+	// const intervals = await getIntervals();
 
 	const basicUsersData = await Promise.all(
-		users.map(async (user) => await basicUserSleepData(user.id))
+		users.map(async (user) => await basicUserSleepData(user.id, intervalId))
 	);
 
 	return basicUsersData;
 };
-
-/*
-
-{intervals: [ {
-    date: mm-dd-yy formatted,
-users: [
-    {
-        id: 1,
-        name: 'jon',
-        sleepData: {
-            score: 99, 
-            avgHeartRate: 15 round num,
-            stages: [{stage, duration}]
-        }
-    },
-     id: 2,
-        name: 'jan',
-        sleepData: {
-            score: 91, 
-            avgHeartRate: 12,
-            stages: [{stage, duration}]
-        }
-],],},
-}...
-    */
