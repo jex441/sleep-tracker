@@ -13,9 +13,18 @@ export const basicUserSleepData = async (userId: string) => {
 			return avg;
 		}, 0);
 
+		const totalSleepTime = interval.stages.reduce((accum, cur) => {
+			const { stage, duration } = cur;
+			if (stage === "deep" || stage === "light") {
+				accum += duration;
+			}
+			return accum;
+		}, 0);
+
 		return {
 			score: interval.score,
 			ts: interval.ts,
+			totalSleepTime: totalSleepTime,
 			stages: interval.stages,
 			avgHeartRate: avgHeartRate,
 		};
