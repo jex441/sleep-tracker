@@ -28,11 +28,19 @@ export const basicUserSleepData = async (
 			}
 			return accum;
 		}, 0);
+
+		const totalSessionTime = interval.stages.reduce((accum, cur) => {
+			const { stage, duration } = cur;
+			accum += duration;
+			return accum;
+		}, 0);
+
 		const totalSleepTimeString = secondsConverter(totalSleepTime);
 		return {
 			score: interval.score,
 			ts: interval.ts,
-			totalSleepTime: totalSleepTimeString,
+			totalSleepTime: totalSleepTime,
+			totalSessionTime: totalSessionTime,
 			stages: interval.stages,
 			avgHeartRate: avgHeartRate,
 		};

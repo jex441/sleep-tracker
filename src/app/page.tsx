@@ -1,7 +1,7 @@
 import { getUsersOverview, getIntervalIds } from "@/app/_lib/data";
 import Link from "next/link";
 import SelectInterval from "./_components/selectInterval";
-
+import SleepTimelineBar from "./_components/sleepTimelineBar";
 export default async function Home({
 	searchParams,
 }: {
@@ -13,22 +13,32 @@ export default async function Home({
 	const intervals: string[] = await getIntervalIds();
 	const query = searchParams?.query || null;
 	let data = await getUsersOverview(query);
+	let startTime = new Date(data.startTime);
+	let endTime = new Date(data.endTime);
+
+	console.log(data);
 	return (
-		<main className="flex min-h-screen flex-col items-center justify-between p-24">
-			Render aggregate user data
-			<SelectInterval intervals={intervals} />
-			{data.map((user) => {
-				return (
-					<Link key={user.id} href={`/users/${user.id}}`}>
-						<div className="m-4 p-4 w-[600px] bg-white rounded-md">
-							<div>{user.name}</div>
-							<div>score: {user.intervals[0].score}</div>
-							<div>total sleep time: {user.intervals[0].totalSleepTime}</div>
-							<div>avg heart rate: {user.intervals[0].avgHeartRate}</div>
+		<main className="flex min-h-screen flex-col items-center gap-10 px-20">
+			<nav className="w-full justify-start m-10">
+				<SelectInterval intervals={intervals} />
+			</nav>
+			<header className="bg-red-100 w-full flex justify-between">
+				<div>{endTime.toISOString().split("T")[1]}</div>
+				<div>{startTime.toISOString().split("T")[1]}</div>
+			</header>
+
+			{/* Timeline */}
+			<div className="w-full flex flex-col gap-10">
+				{data.users.map((user) => {
+					return (
+						<div className="w-full border-1 border border-red-500">
+							<SleepTimelineBar data={user.intervals[0].stages} />
 						</div>
-					</Link>
-				);
-			})}
+					);
+				})}
+			</div>
 		</main>
 	);
 }
+
+// need total
