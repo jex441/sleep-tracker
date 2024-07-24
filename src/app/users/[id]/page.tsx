@@ -1,4 +1,4 @@
-import { getUser } from "../_lib/requests";
+import { getUser } from "../../_lib/requests";
 
 export default async function User({ params }: { params: { user: string } }) {
 	const data = await getUser(params.user);
