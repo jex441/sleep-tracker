@@ -12,7 +12,7 @@ export const getUser = async (id: string): Promise<User> => {
 	const response = await fetch(`${baseUrl}/users.json`);
 	const data = await response.json();
 	const user = data.users.filter((user: User) => user.id === id);
-	return user;
+	return user[0];
 };
 
 export const getUserSleepData = async (userId: string): Promise<Interval[]> => {

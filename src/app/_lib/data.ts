@@ -7,14 +7,12 @@ export const getUsersOverview = async () => {
 	//return one object with basic data for each user for home page. should paginate based on date (interval)
 
 	const users = await getUsers();
-	console.log(users);
 
 	const basicUsersData = await Promise.all(
 		users.map(async (user) => await basicUserSleepData(user.id))
 	);
 
-	console.log("basic user data", basicUsersData);
-	// return basicUsersData;
+	return basicUsersData;
 };
 
 /*

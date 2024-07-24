@@ -20,7 +20,10 @@ export const basicUserSleepData = async (userId: string) => {
 			avgHeartRate: avgHeartRate,
 		};
 	});
-	const response = { ...user, sleepData: formattedData };
+	const response = {
+		...user,
+		intervals: formattedData,
+	};
 
 	return response;
 };
