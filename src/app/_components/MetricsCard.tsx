@@ -15,7 +15,7 @@ export default function MetricsCard({
 }) {
 	const scoreColor = score < 60 ? "#FA5555" : "#2C3D4F";
 	return (
-		<article className="rounded-lg w-[20%] bg-white/90 flex items-center justify-start p-1 lg:p-2 flex-col drop-shadow-md">
+		<article className="rounded-lg w-[15%] bg-white/90 flex items-center justify-start p-1 lg:p-2 flex-col drop-shadow-md">
 			<span className="hidden lg:block text-xs text-secondary lg:text-sm">
 				Sleep Score
 			</span>
