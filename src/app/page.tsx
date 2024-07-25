@@ -25,7 +25,7 @@ export default async function Home({
 
 	return (
 		<main className="flex min-h-screen flex-col items-center gap-5 px-2 md:px-10 lg:px-20">
-			<nav className="w-full justify-start m-2 md:md-6 lg:m-10">
+			<nav className="w-full justify-start m-1 md:md-6 lg:mx-10 lg:my-6">
 				<SelectInterval intervals={intervals} />
 			</nav>
 
@@ -36,6 +36,8 @@ export default async function Home({
 					<div>{endTime.toLocaleTimeString()}</div>
 				</header>
 				{data.users.map((user) => {
+					const score = user.intervals[0].score;
+					const scoreColor = score < 60 ? "#FA5555" : "#2C3D4F";
 					return (
 						<Link key={user.id} href={`/users/{user.id}`}>
 							{/* Timeline row: */}
@@ -56,7 +58,10 @@ export default async function Home({
 									<span className="hidden lg:block text-xs text-secondary lg:text-sm">
 										Sleep Score
 									</span>
-									<span className="lg:text-[24px] text-deep font-bold">
+									<span
+										className={`lg:text-[24px] font-bold`}
+										style={{ color: scoreColor }}
+									>
 										{user.intervals[0].score}
 									</span>
 									<div className="flex flex-col lg:flex-row lg:justify-around w-full">

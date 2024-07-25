@@ -8,13 +8,15 @@ const config: Config = {
 	],
 	theme: {
 		colors: {
-			secondary: "#363434",
+			secondary: "#535454",
 			transparent: "transparent",
-			white: "#fff",
-			deep: "#3905AE",
+			white: "#F4F9FA",
+			deep: "#2C3D4F",
 			awake: "#E3B279",
-			light: "#6051F1",
-			out: "#E7E6FC",
+			light: "#3A648C",
+			out: "#535454",
+			danger: "#ffff00",
+			lightbg: "#fff",
 		},
 		extend: {
 			backgroundImage: {
