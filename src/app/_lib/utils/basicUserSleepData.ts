@@ -21,6 +21,18 @@ export const basicUserSleepData = async (
 		const avgHeartRate = Math.floor(
 			avgHeartRateTotal / interval.timeseries.heartRate.length
 		);
+
+		const avgHeartTempBedC = interval.timeseries.tempBedC.reduce(
+			(accum, cur) => {
+				const [time, val] = cur;
+				accum += val;
+				return accum;
+			},
+			0
+		);
+		const avgTempBedC = Math.floor(
+			avgHeartTempBedC / interval.timeseries.tempBedC.length
+		);
 		const totalSleepTime = interval.stages.reduce((accum, cur) => {
 			const { stage, duration } = cur;
 			if (stage === "deep" || stage === "light") {
@@ -35,7 +47,6 @@ export const basicUserSleepData = async (
 			return accum;
 		}, 0);
 
-		const totalSleepTimeString = secondsConverter(totalSleepTime);
 		return {
 			score: interval.score,
 			ts: interval.ts,
@@ -43,6 +54,7 @@ export const basicUserSleepData = async (
 			totalSessionTime: totalSessionTime,
 			stages: interval.stages,
 			avgHeartRate: avgHeartRate,
+			avgTempBedC: avgTempBedC,
 		};
 	});
 	const response = {

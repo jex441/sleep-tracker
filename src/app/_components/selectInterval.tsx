@@ -18,17 +18,23 @@ export default function SelectInterval({ intervals }: { intervals: string[] }) {
 	}
 
 	return (
-		<select
-			name="intervals"
-			id="intervals"
-			defaultValue={searchParams.get("query")?.toString()}
-			onChange={(val) => handleSearch(val)}
-		>
-			{intervals.map((interval: string) => (
-				<option key={interval} value={interval}>
-					{interval}
-				</option>
-			))}
-		</select>
+		<>
+			<label htmlFor="intervals" className="text-lg text-white">
+				Your family{"'"}s sleep data for
+			</label>
+			<select
+				name="intervals"
+				id="intervals"
+				defaultValue={searchParams.get("query")?.toString()}
+				onChange={(val) => handleSearch(val)}
+				className="p-2 text-lg mx-1 text-white rounded-lg bg-transparent"
+			>
+				{intervals.map((interval: string) => (
+					<option key={interval} value={interval}>
+						{interval}
+					</option>
+				))}
+			</select>
+		</>
 	);
 }
