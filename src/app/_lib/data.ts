@@ -148,7 +148,7 @@ export const getUserIntervalReport = async (
 	};
 };
 
-// export const getUserAverages = async (userId: string) => {
-// 	const timeSeriesAverages = userTimeSeriesAverages(userId);
-// 	return timeSeriesAverages;
-// };
+export const getUserAllTimeAverages = async (userId: string) => {
+	const timeSeriesAverages = userTimeSeriesAverages(userId);
+	return timeSeriesAverages;
+};
