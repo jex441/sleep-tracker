@@ -20,7 +20,7 @@ export default function UserAveragesSummary({
 	allTimeAverageTempRoomC: number;
 }) {
 	return (
-		<div className="h-[200px] w-full bg-out/90 text-white flex flex-row p-8 flex justify-between items-center rounded-lg">
+		<div className="h-[200px] w-full bg-deep/95 text-white flex flex-row p-8 flex justify-between items-center rounded-lg">
 			<span className="flex justify-center gap-2 items-center">
 				<Image alt="avgHeartRate" width={32} height={32} src={sleeplight} />
 				<span>

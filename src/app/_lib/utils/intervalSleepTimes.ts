@@ -5,6 +5,7 @@ export default function intervalSleepTimes(interval: Interval) {
 	let totalAwakeTime = 0;
 	let totalDeepSleepTime = 0;
 	let totalLightSleepTime = 0;
+	let totalOutTime = 0;
 
 	let totalIntervalTime = interval.stages.reduce((accum, cur) => {
 		const { stage, duration } = cur;
@@ -20,15 +21,19 @@ export default function intervalSleepTimes(interval: Interval) {
 		if (stage === "awake") {
 			totalAwakeTime += duration;
 		}
+		if (stage === "out") {
+			totalOutTime += duration;
+		}
 		accum += duration;
 		return accum;
 	}, 0);
-
+	console.log("=?", (totalAwakeTime / totalIntervalTime) * 100);
 	return {
 		totalSleepTime,
 		totalDeepSleepTime,
 		totalLightSleepTime,
 		totalIntervalTime,
+		totalOutTime,
 		totalAwakeTime,
 	};
 }

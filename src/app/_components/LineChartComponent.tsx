@@ -17,7 +17,7 @@ export default function LineChartComponent({
 	});
 
 	return (
-		<VictoryChart height={520} width={1200} theme={VictoryTheme.material}>
+		<VictoryChart height={520} width={1200} theme={VictoryTheme.grayscale}>
 			<VictoryLine
 				style={{
 					data: { stroke: "#fff" },
