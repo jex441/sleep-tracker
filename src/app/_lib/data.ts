@@ -4,6 +4,10 @@
 import { getUsers, getUserSleepData } from "./requests";
 import { basicUserSleepData } from "./utils/basicUserSleepData";
 import allTimeAverageTimeSeries from "./utils/allTimeAverageTimeSeries";
+import allTimeAverageScore from "./utils/allTimeAverageScore";
+import intervalSleepTimes from "./utils/intervalSleepTimes";
+
+import Interval from "@/app/_types/Interval";
 
 export const getIntervalIds = async (): Promise<[]> => {
 	const users = await getUsers();
@@ -95,9 +99,14 @@ export const getUserAverages = async (userId: string) => {
 	console.log(allTimeAverageRespiratoryRate);
 	console.log(allTimeAverageTempRoomC);
 	// console.log(allTimeAverageTnt);
+	const allTimeAverageScoreNum = allTimeAverageScore(data);
+	const sleepTimes = intervalSleepTimes(data[0]);
+	console.log(sleepTimes);
+
+	console.log("average score", allTimeAverageScoreNum);
 };
 
-export const getUserIntervalReport = async () => {
+export const getUserIntervalReport = async (interval: Interval) => {
 	//this interval's
 	//total sleep time
 	//total deep sleep time
@@ -106,4 +115,5 @@ export const getUserIntervalReport = async () => {
 	//avg bed temp
 	//avg heart rate
 	//avg resp rate
+	const sleepTimes = intervalSleepTimes(interval);
 };
