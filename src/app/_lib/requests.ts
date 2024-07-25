@@ -19,6 +19,7 @@ export const getUserSleepData = async (
 	userId: string,
 	intervalId: string | null = null
 ): Promise<Interval[]> => {
+	// Get a user's sleep data, if interval ID is supplied, return only that interval's sleep data
 	const response = await fetch(`${baseUrl}/${userId}.json`);
 	const data = await response.json();
 	const intervals: Interval[] = data.intervals;

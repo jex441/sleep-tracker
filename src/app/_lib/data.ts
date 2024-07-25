@@ -1,3 +1,4 @@
+// Is this needed?
 "use server";
 
 import { getUsers, getUserSleepData } from "./requests";
@@ -65,4 +66,28 @@ export const getUsersOverview = async (intervalId: string | null = null) => {
 		users: basicUsersData,
 	};
 	return response;
+};
+
+export const getUserAverages = async (userId: string) => {
+	//avg score
+	//avg sleep time
+	//avg bed temp
+	//avg heart rate
+	//avg resp rate
+	//all time high score
+	//all time low score
+	//longest sleep
+	const data = await getUserSleepData(userId);
+	console.log("data:", data);
+};
+
+export const getUserIntervalReport = async () => {
+	//this interval's
+	//total sleep time
+	//total deep sleep time
+	//total light sleep time
+	//total awake time
+	//avg bed temp
+	//avg heart rate
+	//avg resp rate
 };

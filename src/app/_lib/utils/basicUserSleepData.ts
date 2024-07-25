@@ -29,9 +29,11 @@ export const basicUserSleepData = async (
 			},
 			0
 		);
+
 		const avgTempBedC = Math.floor(
 			avgHeartTempBedC / interval.timeseries.tempBedC.length
 		);
+
 		const totalSleepTime = interval.stages.reduce((accum, cur) => {
 			const { stage, duration } = cur;
 			if (stage === "deep" || stage === "light") {
