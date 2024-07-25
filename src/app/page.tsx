@@ -5,7 +5,8 @@ import SleepTimelineBar from "./_components/sleepTimelineBar";
 import Image from "next/image";
 import heart from "/public/heart.png";
 import temp from "/public/temp.png";
-
+import landscape from "/public/landscape.png";
+import rectangle from "/public/rectangle.png";
 export default async function Home({
 	searchParams,
 }: {
@@ -25,8 +26,26 @@ export default async function Home({
 
 	return (
 		<main className="flex min-h-screen flex-col items-center gap-5 px-2 md:px-10 lg:px-20">
-			<nav className="w-full justify-start m-1 md:md-6 lg:mx-10 lg:my-6">
+			<nav className="w-full flex items-center justify-between flex-col gap-4 lg:flex-row m-1 md:md-6 lg:mx-10 lg:my-6">
 				<SelectInterval intervals={intervals} />
+				<div className="flex items-center flex-row gap-10">
+					<span className="flex justify-center items-center text-center gap-1 text-sm text-deep flex-col">
+						<span className="h-6 w-6 rounded-md bg-out/40 block shadow-lg"></span>{" "}
+						away
+					</span>
+					<span className="flex justify-center items-center text-center gap-1 text-sm text-deep flex-col">
+						<span className="h-6 w-6 rounded-md bg-light block shadow-lg"></span>
+						light
+					</span>
+					<span className="flex justify-center items-center text-center gap-1 text-sm text-deep flex-col">
+						<span className="h-6 w-6 rounded-md bg-deep block shadow-lg"></span>
+						deep
+					</span>
+					<span className="flex justify-center items-center text-center gap-1 text-sm text-deep flex-col">
+						<span className="h-6 w-6 rounded-md bg-awake block shadow-lg"></span>
+						awake
+					</span>
+				</div>
 			</nav>
 
 			{/* Timeline Component: */}
@@ -41,7 +60,7 @@ export default async function Home({
 					return (
 						<Link key={user.id} href={`/users/{user.id}`}>
 							{/* Timeline row: */}
-							<section className=" w-full flex gap-1 lg:gap-4 flex-row">
+							<section className="w-full my-2 flex gap-1 lg:gap-4 flex-row">
 								{/* Username Card: */}
 								<article className="text-deep text-center lg:text-[20px] font-semibold tracking-wide rounded-lg w-[20%] bg-white/90 flex items-center justify-center drop-shadow-md">
 									{user.name}
@@ -91,6 +110,12 @@ export default async function Home({
 						</Link>
 					);
 				})}
+			</div>
+			<div className="absolute bottom-0 z-10">
+				<Image alt="bg" src={landscape} width={1470} height={162} />
+			</div>
+			<div className="absolute bottom-5 z-0">
+				<Image alt="bg" src={rectangle} width={1470} height={52} />
 			</div>
 		</main>
 	);

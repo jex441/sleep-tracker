@@ -13,9 +13,9 @@ export default function SleepTimeline({
 	startTime: number;
 }) {
 	const colors = {
-		awake: "bg-awake",
-		light: "bg-light",
-		deep: "bg-deep",
+		awake: "bg-awake/90",
+		light: "bg-light/90",
+		deep: "bg-deep/90",
 		out: "bg-out/50",
 	};
 	// Render each family member's sleep timeline to begin by subtracting this family member's start
