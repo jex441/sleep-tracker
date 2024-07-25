@@ -13,7 +13,6 @@ export default function allTimeAverageTimeSeries(
 		const avg = total / interval.timeseries[value].length;
 		return avg;
 	});
-	console.log(averages);
 
 	const sumOfAllAverages = averages.reduce((accum, cur) => {
 		accum += cur;
