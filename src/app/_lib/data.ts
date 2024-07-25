@@ -1,9 +1,9 @@
+"use server";
+
 import { getUsers, getUserSleepData } from "./requests";
 import { basicUserSleepData } from "./utils/basicUserSleepData";
 
-export const getIntervalIds = async (
-	userId: string | null = null
-): Promise<[]> => {
+export const getIntervalIds = async (): Promise<[]> => {
 	const users = await getUsers();
 
 	const data = await Promise.all(
@@ -26,22 +26,17 @@ export const getIntervalIds = async (
 };
 
 export const getUsersOverview = async (intervalId: string | null = null) => {
-	// get basic data for each user
-	//return one object with basic data for each user for home page. should paginate based on date (interval)
-
 	const users = await getUsers();
-	// const intervals = await getIntervals();
 
+	// Get basic data for each user:
 	const basicUsersData = await Promise.all(
 		users.map(async (user) => await basicUserSleepData(user.id, intervalId))
 	);
 
-	// need earliest start time, longest duration
-	// make a timeline, then map sessions with colored divs accordingly
 	let startTime: number = Infinity;
 	let endTime: number = -Infinity;
 
-	//earliest start time
+	// Determine earliest interval start time for the chosen day
 	basicUsersData.map((userData) => {
 		const stamp = Date.parse(userData.intervals[0].ts);
 		const currentEarliest = startTime;
@@ -50,6 +45,7 @@ export const getUsersOverview = async (intervalId: string | null = null) => {
 		}
 	});
 
+	// Determine time at which the last person ended their session for this interval
 	basicUsersData.map((userData) => {
 		const start = Date.parse(userData.intervals[0].ts);
 		const userSessionTime = userData.intervals[0].totalSessionTime * 1000;
@@ -59,6 +55,7 @@ export const getUsersOverview = async (intervalId: string | null = null) => {
 		}
 	});
 
+	// Total session time from first in to last out. To be used for rendering the timeline:
 	const totalTimeInSeconds = (endTime - startTime) / 1000;
 
 	const response = {

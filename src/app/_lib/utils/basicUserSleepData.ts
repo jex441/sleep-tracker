@@ -1,6 +1,5 @@
 import { getUser, getUserSleepData } from "../requests";
 import Interval from "@/app/_types/Interval";
-import secondsConverter from "@/app/_lib/utils/secondsConverter";
 
 export const basicUserSleepData = async (
 	userId: string,

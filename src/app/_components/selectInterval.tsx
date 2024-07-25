@@ -27,7 +27,7 @@ export default function SelectInterval({ intervals }: { intervals: string[] }) {
 				id="intervals"
 				defaultValue={searchParams.get("query")?.toString()}
 				onChange={(val) => handleSearch(val)}
-				className="p-2 text-lg mx-1 text-white rounded-lg bg-transparent"
+				className="p-2 text-lg text-white rounded-lg bg-transparent"
 			>
 				{intervals.map((interval: string) => (
 					<option key={interval} value={interval}>
