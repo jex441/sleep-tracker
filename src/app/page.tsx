@@ -25,24 +25,24 @@ export default async function Home({
 	let endTime = new Date(data.endTime);
 
 	return (
-		<main className="flex min-h-screen flex-col items-center gap-5 px-2 md:px-10 lg:px-20">
+		<main className="flex min-h-screen flex-col items-center gap-5 px-2 md:px-10 lg:px-20 overflow-hidden">
 			<nav className="w-full flex items-center justify-between flex-col gap-4 lg:flex-row m-1 md:md-6 lg:mx-10 lg:my-6">
 				<SelectInterval intervals={intervals} />
 				<div className="flex items-center flex-row gap-10">
 					<span className="flex justify-center items-center text-center gap-1 text-sm text-deep flex-col">
-						<span className="h-6 w-6 rounded-md bg-out/40 block shadow-lg"></span>{" "}
+						<span className="h-6 w-6 rounded-md bg-out/30 block shadow-lg"></span>{" "}
 						away
 					</span>
 					<span className="flex justify-center items-center text-center gap-1 text-sm text-deep flex-col">
-						<span className="h-6 w-6 rounded-md bg-light block shadow-lg"></span>
-						light
+						<span className="h-6 w-6 rounded-md bg-light/90 block shadow-lg"></span>
+						light sleep
 					</span>
 					<span className="flex justify-center items-center text-center gap-1 text-sm text-deep flex-col">
-						<span className="h-6 w-6 rounded-md bg-deep block shadow-lg"></span>
-						deep
+						<span className="h-6 w-6 rounded-md bg-deep/90 block shadow-lg"></span>
+						deep sleep
 					</span>
 					<span className="flex justify-center items-center text-center gap-1 text-sm text-deep flex-col">
-						<span className="h-6 w-6 rounded-md bg-awake block shadow-lg"></span>
+						<span className="h-6 w-6 rounded-md bg-awake/80 block shadow-lg"></span>
 						awake
 					</span>
 				</div>

@@ -16,7 +16,7 @@ export default function SleepTimeline({
 		awake: "bg-awake/90",
 		light: "bg-light/90",
 		deep: "bg-deep/90",
-		out: "bg-out/50",
+		out: "bg-transparent",
 	};
 	// Render each family member's sleep timeline to begin by subtracting this family member's start
 	// by the earliest interval start time.
@@ -26,9 +26,7 @@ export default function SleepTimeline({
 	return (
 		<div className="lg:h-[100px] w-full bg-out/25 flex flex-row justify-start rounded-lg drop-shadow-lg">
 			{/* Padding for start time delay */}
-			{delayPercent > 0 && (
-				<div className="" style={{ width: delayString }}></div>
-			)}
+			{delayPercent > 0 && <div style={{ width: delayString }}></div>}
 			{/* Render a color coded progress bar that varies depending on the stage and its duration */}
 			{interval.stages.map(({ stage, duration }, idx) => {
 				const bgcolor: string = colors[stage as keyof typeof colors];
