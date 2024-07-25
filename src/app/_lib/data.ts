@@ -6,6 +6,7 @@ import { basicUserSleepData } from "./utils/basicUserSleepData";
 import allTimeAverageTimeSeries from "./utils/allTimeAverageTimeSeries";
 import allTimeAverageScore from "./utils/allTimeAverageScore";
 import intervalSleepTimes from "./utils/intervalSleepTimes";
+import intervalAverageTimeSeries from "./utils/intervalAverageTimeSeries";
 
 import Interval from "@/app/_types/Interval";
 
@@ -73,18 +74,8 @@ export const getUsersOverview = async (intervalId: string | null = null) => {
 	return response;
 };
 
-export const getUserAverages = async (userId: string) => {
-	//avg score
-	//avg sleep time
-	//avg bed temp
-	//avg heart rate
-	//avg resp rate
-	//all time high score
-	//all time low score
-	//longest sleep
-
+export const userTimeSeriesAverages = async (userId: string) => {
 	const data = await getUserSleepData(userId);
-
 	const allTimeAverageHeartRate = allTimeAverageTimeSeries(data, "heartRate");
 	const allTimeAverageRespiratoryRate = allTimeAverageTimeSeries(
 		data,
@@ -94,26 +85,70 @@ export const getUserAverages = async (userId: string) => {
 	const allTimeAverageTempRoomC = allTimeAverageTimeSeries(data, "tempRoomC");
 	// const allTimeAverageTnt = allTimeAverageTimeSeries(data, "tnt"); returns 1
 
-	console.log(allTimeAverageHeartRate);
-	console.log(allTimeAverageTempBedC);
-	console.log(allTimeAverageRespiratoryRate);
-	console.log(allTimeAverageTempRoomC);
-	// console.log(allTimeAverageTnt);
 	const allTimeAverageScoreNum = allTimeAverageScore(data);
 	const sleepTimes = intervalSleepTimes(data[0]);
-	console.log(sleepTimes);
 
-	console.log("average score", allTimeAverageScoreNum);
+	return {
+		allTimeAverageHeartRate,
+		allTimeAverageRespiratoryRate,
+		allTimeAverageScoreNum,
+		allTimeAverageTempBedC,
+		allTimeAverageTempRoomC,
+	};
 };
 
-export const getUserIntervalReport = async (interval: Interval) => {
-	//this interval's
-	//total sleep time
-	//total deep sleep time
-	//total light sleep time
-	//total awake time
-	//avg bed temp
-	//avg heart rate
-	//avg resp rate
-	const sleepTimes = intervalSleepTimes(interval);
+export const userIntervalTimeSeriesAverages = async (
+	userId: string,
+	intervalId: string
+) => {
+	const data = await getUserSleepData(userId, intervalId);
+	const intervalAverageHeartRate = intervalAverageTimeSeries(
+		data[0],
+		"heartRate"
+	);
+	const intervalAverageRespiratoryRate = intervalAverageTimeSeries(
+		data[0],
+		"respiratoryRate"
+	);
+	const intervalAverageTempBedC = intervalAverageTimeSeries(
+		data[0],
+		"tempBedC"
+	);
+	const intervalAverageTempRoomC = intervalAverageTimeSeries(
+		data[0],
+		"tempRoomC"
+	);
+
+	return {
+		intervalAverageHeartRate,
+		intervalAverageRespiratoryRate,
+		intervalAverageTempBedC,
+		intervalAverageTempRoomC,
+	};
 };
+
+export const getUserIntervalReport = async (
+	userId: string,
+	intervalId: string
+) => {
+	const interval: Interval[] = await getUserSleepData(userId, intervalId);
+
+	const intervalSleepTimesData = intervalSleepTimes(interval[0]);
+	const intervalTimeSeriesAveragesData = await userIntervalTimeSeriesAverages(
+		userId,
+		intervalId
+	);
+
+	const basicIntervalData = await basicUserSleepData(userId, intervalId);
+
+	return {
+		...basicIntervalData,
+		...intervalSleepTimesData,
+		...intervalTimeSeriesAveragesData,
+	};
+};
+
+// export const getUserAverages = async (userId: string) => {
+// 	const timeSeriesAverages = userTimeSeriesAverages(userId);
+// 	return timeSeriesAverages;
+// };
