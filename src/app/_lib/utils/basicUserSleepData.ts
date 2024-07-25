@@ -49,6 +49,7 @@ export const basicUserSleepData = async (
 		}, 0);
 
 		return {
+			timeseries: interval.timeseries,
 			score: interval.score,
 			ts: interval.ts,
 			totalSleepTime: totalSleepTime,

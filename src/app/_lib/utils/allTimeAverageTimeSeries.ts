@@ -5,15 +5,17 @@ export default function allTimeAverageTimeSeries(
 	value: string
 ): number {
 	const averages = data.map((interval) => {
-		const total = interval.timeseries[value].reduce((accum, cur) => {
-			const [time, val] = cur;
-			accum += val;
-			return accum;
-		}, 0);
+		const total = interval.timeseries[value].reduce(
+			(accum: number, cur: [string, number]) => {
+				const [time, val] = cur;
+				accum += val;
+				return accum;
+			},
+			0
+		);
 		const avg = total / interval.timeseries[value].length;
 		return avg;
 	});
-	console.log(averages);
 
 	const sumOfAllAverages = averages.reduce((accum, cur) => {
 		accum += cur;

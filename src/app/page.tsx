@@ -27,7 +27,7 @@ export default async function Home({
 	let endTime = new Date(data.endTime);
 
 	return (
-		<main className="flex min-h-screen flex-col items-center gap-5 px-2 md:px-10 lg:px-20 overflow-hidden">
+		<main className="flex min-h-screen flex-col items-center gap-5 px-2 md:px-10 lg:px-20">
 			<nav className="w-full flex items-center justify-between gap-4 flex-row m-1 md:md-6 lg:mx-10 lg:my-6">
 				<SelectInterval intervals={intervals} />
 				<div className="flex items-center flex-row gap-4 m-1 lg:gap-10">
