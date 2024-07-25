@@ -88,11 +88,13 @@ export const getUserAverages = async (userId: string) => {
 	);
 	const allTimeAverageTempBedC = allTimeAverageTimeSeries(data, "tempBedC");
 	const allTimeAverageTempRoomC = allTimeAverageTimeSeries(data, "tempRoomC");
+	// const allTimeAverageTnt = allTimeAverageTimeSeries(data, "tnt"); returns 1
 
 	console.log(allTimeAverageHeartRate);
 	console.log(allTimeAverageTempBedC);
 	console.log(allTimeAverageRespiratoryRate);
 	console.log(allTimeAverageTempRoomC);
+	// console.log(allTimeAverageTnt);
 };
 
 export const getUserIntervalReport = async () => {

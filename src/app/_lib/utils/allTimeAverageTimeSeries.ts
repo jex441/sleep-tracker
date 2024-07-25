@@ -14,13 +14,12 @@ export default function allTimeAverageTimeSeries(
 		return avg;
 	});
 	console.log(averages);
-	const sumOfAllAverageHeartRatings = averages.reduce((accum, cur) => {
+
+	const sumOfAllAverages = averages.reduce((accum, cur) => {
 		accum += cur;
 		return accum;
 	}, 0);
 
-	const allTimeAverageHeartRating = Math.floor(
-		sumOfAllAverageHeartRatings / data.length
-	);
-	return allTimeAverageHeartRating;
+	const allTimeAverage = Math.floor(sumOfAllAverages / data.length);
+	return allTimeAverage;
 }
