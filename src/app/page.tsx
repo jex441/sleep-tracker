@@ -37,12 +37,9 @@ export default async function Home({
 				</header>
 				{data.users.map((user) => {
 					return (
-						<Link href={`/users/{user.id}`}>
+						<Link key={user.id} href={`/users/{user.id}`}>
 							{/* Timeline row: */}
-							<section
-								key={user.id}
-								className=" w-full flex gap-1 lg:gap-4 flex-row"
-							>
+							<section className=" w-full flex gap-1 lg:gap-4 flex-row">
 								{/* Username Card: */}
 								<article className="text-deep text-center lg:text-[20px] font-semibold tracking-wide rounded-lg w-[20%] bg-white flex items-center justify-center">
 									{user.name}
