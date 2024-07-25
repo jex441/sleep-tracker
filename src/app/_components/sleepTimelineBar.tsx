@@ -24,7 +24,7 @@ export default function SleepTimeline({
 	const delayPercent = (delaySeconds / totalTimeInSeconds) * 100;
 	const delayString = `${delayPercent}%`;
 	return (
-		<div className="lg:h-[100px] w-full bg-out/25 flex flex-row justify-start rounded-lg">
+		<div className="lg:h-[100px] w-full bg-out/25 flex flex-row justify-start rounded-lg drop-shadow-lg">
 			{/* Padding for start time delay */}
 			{delayPercent > 0 && (
 				<div className="" style={{ width: delayString }}></div>

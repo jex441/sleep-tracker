@@ -18,8 +18,8 @@ export default function SelectInterval({ intervals }: { intervals: string[] }) {
 	}
 
 	return (
-		<>
-			<label htmlFor="intervals" className="text-lg text-white">
+		<div className="bg-white/90 w-[420px] rounded-md p-1 px-4 drop-shadow-md">
+			<label htmlFor="intervals" className="text-lg text-deep">
 				Your family{"'"}s sleep data for
 			</label>
 			<select
@@ -27,7 +27,7 @@ export default function SelectInterval({ intervals }: { intervals: string[] }) {
 				id="intervals"
 				defaultValue={searchParams.get("query")?.toString()}
 				onChange={(val) => handleSearch(val)}
-				className="p-2 text-lg text-white rounded-lg bg-transparent"
+				className="p-2 text-lg text-deep rounded-lg bg-transparent"
 			>
 				{intervals.map((interval: string) => (
 					<option key={interval} value={interval}>
@@ -35,6 +35,6 @@ export default function SelectInterval({ intervals }: { intervals: string[] }) {
 					</option>
 				))}
 			</select>
-		</>
+		</div>
 	);
 }

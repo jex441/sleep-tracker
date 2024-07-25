@@ -31,7 +31,7 @@ export default async function Home({
 
 			{/* Timeline Component: */}
 			<div className="w-full flex flex-col gap-6">
-				<header className="text-white w-[70%] self-center flex justify-between">
+				<header className="text-deep w-[70%] self-center flex justify-between">
 					<div>{startTime.toLocaleTimeString()}</div>
 					<div>{endTime.toLocaleTimeString()}</div>
 				</header>
@@ -43,7 +43,7 @@ export default async function Home({
 							{/* Timeline row: */}
 							<section className=" w-full flex gap-1 lg:gap-4 flex-row">
 								{/* Username Card: */}
-								<article className="text-deep text-center lg:text-[20px] font-semibold tracking-wide rounded-lg w-[20%] bg-white flex items-center justify-center">
+								<article className="text-deep text-center lg:text-[20px] font-semibold tracking-wide rounded-lg w-[20%] bg-white/90 flex items-center justify-center drop-shadow-md">
 									{user.name}
 								</article>
 								{/* Color Coded Bar Denoting User's Sleep Data */}
@@ -54,7 +54,7 @@ export default async function Home({
 									interval={user.intervals[0]}
 								/>
 								{/* Metrics bar and averages for this interval */}
-								<article className="rounded-lg w-[20%] bg-white flex items-center justify-start p-1 lg:p-2 flex-col">
+								<article className="rounded-lg w-[20%] bg-white/90 flex items-center justify-start p-1 lg:p-2 flex-col drop-shadow-md">
 									<span className="hidden lg:block text-xs text-secondary lg:text-sm">
 										Sleep Score
 									</span>
