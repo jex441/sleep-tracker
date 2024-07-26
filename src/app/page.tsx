@@ -40,16 +40,16 @@ export default async function Home({
 						away
 					</span>
 					<span className="flex justify-center items-center text-center gap-1 text-xs lg:text-sm text-deep flex-col">
+						<span className="h-6 w-6 rounded-md bg-awake/80 block shadow-lg"></span>
+						awake
+					</span>
+					<span className="flex justify-center items-center text-center gap-1 text-xs lg:text-sm text-deep flex-col">
 						<span className="h-6 w-6 rounded-md bg-light/90 block shadow-lg"></span>
 						light
 					</span>
 					<span className="flex justify-center items-center text-center gap-1 text-xs lg:text-sm text-deep flex-col">
 						<span className="h-6 w-6 rounded-md bg-deep/90 block shadow-lg"></span>
 						deep
-					</span>
-					<span className="flex justify-center items-center text-center gap-1 text-xs lg:text-sm text-deep flex-col">
-						<span className="h-6 w-6 rounded-md bg-awake/80 block shadow-lg"></span>
-						awake
 					</span>
 				</div>
 			</nav>

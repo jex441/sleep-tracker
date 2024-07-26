@@ -45,6 +45,7 @@ export default async function User({
 					intervalAverageHeartRate={data.intervalAverageHeartRate}
 					intervalAverageRespiratoryRate={data.intervalAverageRespiratoryRate}
 					intervalAverageTempBedC={data.intervalAverageTempBedC}
+					intervalAverageTempRoomC={data.intervalAverageTempRoomC}
 				/>
 				<div className="hidden lg:flex flex-col flex-1 px-auto justify-start items-start h-full w-[400px] lg:w-auto">
 					<span className="text-deep">Heart Rate</span>

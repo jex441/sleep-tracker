@@ -14,10 +14,10 @@ export default function MetricsCard({
 	avgTempBedC: number;
 }) {
 	const scoreColor = () => {
-		if (score < 50) {
+		if (score < 60) {
 			return "#FA8B6C";
 		}
-		if (score < 70) {
+		if (score < 80) {
 			return "#E3B279";
 		} else {
 			return "#2C3D4F";

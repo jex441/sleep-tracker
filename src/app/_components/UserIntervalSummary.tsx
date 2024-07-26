@@ -5,11 +5,11 @@ import { PieChart } from "@mui/x-charts/PieChart";
 import React from "react";
 import secondsConverter from "@/app/_lib/utils/secondsConverter";
 import Image from "next/image";
-import heartlight from "/public/heartlight.png";
-import templight from "/public/templight.png";
-import resplight from "/public/resplight.png";
-import bedlight from "/public/bedlight.png";
-import sleeplight from "/public/sleeplight.png";
+import heart from "/public/heart.png";
+import temp from "/public/temp.png";
+import resp from "/public/heart.png";
+import bed from "/public/bedtemp.png";
+import sleep from "/public/sleep.png";
 
 export default function UserIntervalSummary({
 	score,
@@ -20,6 +20,7 @@ export default function UserIntervalSummary({
 	totalLightSleepTime,
 	intervalAverageHeartRate,
 	intervalAverageRespiratoryRate,
+	intervalAverageTempRoomC,
 	intervalAverageTempBedC,
 	totalOutTime,
 }: {
@@ -28,6 +29,7 @@ export default function UserIntervalSummary({
 	totalIntervalTime: number;
 	totalLightSleepTime: number;
 	totalAwakeTime: number;
+	intervalAverageTempRoomC: number;
 	totalSleepTime: number;
 	intervalAverageHeartRate: number;
 	intervalAverageRespiratoryRate: number;
@@ -54,13 +56,13 @@ export default function UserIntervalSummary({
 		if (score < 70) {
 			return "#FA8B6C";
 		} else {
-			return "#E4F8FF";
+			return "#2C3D4F";
 		}
 	};
 	const color = scoreColor();
 
 	return (
-		<div className="h-[550px] w-[400px] shadow-lg bg-deep/95 text-white flex flex-col p-4 flex justify-center items-center rounded-lg">
+		<div className="h-[550px] w-[400px] shadow-lg bg-white/90 text-deep flex flex-col p-4 flex justify-center items-center rounded-lg">
 			<PieChart
 				series={[
 					{
@@ -93,15 +95,15 @@ export default function UserIntervalSummary({
 			</span>
 			<span className="flex flex-row justify-around my-4 w-full items-center">
 				<span className="flex justify-center gap-2 items-center">
-					<Image alt="avgHeartRate" width={22} height={22} src={heartlight} />
+					<Image alt="avgHeartRate" width={22} height={22} src={heart} />
 					<h2 className="text-[28px]">{intervalAverageHeartRate}</h2>
 				</span>
 				<span className="flex justify-center gap-2 items-center">
-					<Image alt="avgHeartRate" width={22} height={22} src={resplight} />
-					<h2 className="text-[28px]">{intervalAverageRespiratoryRate}</h2>
+					<Image alt="avgHeartRate" width={22} height={22} src={temp} />
+					<h2 className="text-[28px]">{intervalAverageTempRoomC}°</h2>
 				</span>
 				<span className="flex justify-center gap-2 items-center">
-					<Image alt="avgHeartRate" width={22} height={22} src={bedlight} />
+					<Image alt="avgHeartRate" width={22} height={22} src={bed} />
 					<h2 className="text-[28px]">{intervalAverageTempBedC}°</h2>
 				</span>
 			</span>
