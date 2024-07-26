@@ -10,9 +10,9 @@ import temp from "/public/temp.png";
 import resp from "/public/heart.png";
 import bed from "/public/bedtemp.png";
 import sleep from "/public/sleep.png";
-import AppPieChart from "./AppPieChart";
+import MobileAppPieChart from "./MobileAppPieChart";
 
-export default function UserIntervalSummary({
+export default function MobileUserIntervalSummary({
 	score,
 	totalSleepTime,
 	totalDeepSleepTime,
@@ -63,8 +63,8 @@ export default function UserIntervalSummary({
 	const color = scoreColor();
 
 	return (
-		<div className="hidden h-[550px] w-[400px] shadow-lg bg-white/90 text-deep md:flex flex-col p-4 flex justify-center items-center rounded-lg">
-			<AppPieChart
+		<div className="h-[550px] w-[350px] shadow-lg bg-white/90 text-deep flex md:hidden flex-col p-4 flex justify-center items-center rounded-lg">
+			<MobileAppPieChart
 				totalDeepSleepTime={totalDeepSleepTime}
 				totalIntervalTime={totalIntervalTime}
 				totalAwakeTime={totalAwakeTime}

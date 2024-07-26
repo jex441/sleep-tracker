@@ -5,6 +5,7 @@ import {
 } from "../../_lib/data";
 import SelectInterval from "../../_components/selectInterval";
 import UserIntervalSummary from "@/app/_components/UserIntervalSummary";
+import MobileUserIntervalSummary from "@/app/_components/MobileUserIntervalSummary";
 import UserAllTimeAveragesSummary from "@/app/_components/UserAllTimeAveragesSummary";
 import MUILineChart from "@/app/_components/MUILineChart";
 import MobileMuiChart from "@/app/_components/MobileMuiChart";
@@ -22,6 +23,8 @@ export default async function User({
 	const intervals: string[] = await getIntervalIds();
 	const query = searchParams?.query || intervals[0];
 	let data = await getUserIntervalReport(params.id, query);
+
+	// Not using all time averages here:
 	// let allTimeData = await getUserAllTimeAverages(params.id);
 	return (
 		<main className="w-full flex min-h-screen flex-col justify-center lg:justify-start gap-1 p-4 lg:px-24">
@@ -29,7 +32,21 @@ export default async function User({
 				<SelectInterval text={"Your sleep data for"} intervals={intervals} />
 			</nav>
 			<section className="w-full justify-center lg:gap-6 items-center lg:justify-between flex flex-col lg:flex-row gap-2">
+				{/* A work-around to have a responsive pie chart. Room for optimization here */}
 				<UserIntervalSummary
+					score={data.intervals[0].score}
+					totalIntervalTime={data.totalIntervalTime}
+					totalSleepTime={data.totalSleepTime}
+					totalOutTime={data.totalOutTime}
+					totalDeepSleepTime={data.totalDeepSleepTime}
+					totalLightSleepTime={data.totalLightSleepTime}
+					totalAwakeTime={data.totalAwakeTime}
+					intervalAverageHeartRate={data.intervalAverageHeartRate}
+					intervalAverageRespiratoryRate={data.intervalAverageRespiratoryRate}
+					intervalAverageTempBedC={data.intervalAverageTempBedC}
+					intervalAverageTempRoomC={data.intervalAverageTempRoomC}
+				/>
+				<MobileUserIntervalSummary
 					score={data.intervals[0].score}
 					totalIntervalTime={data.totalIntervalTime}
 					totalSleepTime={data.totalSleepTime}
