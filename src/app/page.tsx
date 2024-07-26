@@ -1,11 +1,12 @@
 import { getUsersOverview, getIntervalIds } from "@/app/_lib/data";
 import Link from "next/link";
 import SelectInterval from "./_components/SelectInterval";
-import SleepTimelineBar from "./_components/SleepTimelineBar";
+import SleepTimelineBar from "./_components/SleepTimeLineBar";
 
 import UserCard from "./_components/UserCard";
 import MetricsCard from "./_components/MetricsCard";
 import MobileMetricsCard from "./_components/MobileMetricsCard";
+import TimeLine from "./_components/TimeLine";
 
 export default async function Home({
 	searchParams,
@@ -20,23 +21,6 @@ export default async function Home({
 	const query = searchParams?.query || intervals[0];
 	// Get basic data for each user for the selected interval:
 	let data = await getUsersOverview(query);
-
-	// For calculating the timelines X axis timestamps:
-	let startTime = new Date(data.startTime);
-	let endTime = new Date(data.endTime);
-
-	let int = (data.endTime - data.startTime) / 2;
-	let midTimeInt = data.startTime + int;
-	let midTimeString = new Date(midTimeInt).toLocaleTimeString();
-
-	let quarter = (data.endTime - data.startTime) / 4;
-	let quarterTimeInt = data.startTime + quarter;
-	let quarterTimeString = new Date(quarterTimeInt).toLocaleTimeString();
-
-	let threeQuarterTimeInt = data.startTime + quarter * 3;
-	let threeQuarterTimeString = new Date(
-		threeQuarterTimeInt
-	).toLocaleTimeString();
 
 	return (
 		<main className="flex min-h-screen flex-col items-center gap-5 px-2 md:px-10 lg:px-20">
@@ -98,14 +82,8 @@ export default async function Home({
 						</Link>
 					);
 				})}
-				{/* TimeLineBar Timestamps - Should be its own component */}
-				<section className="border-t pt-2 w-full text-deep text-sm lg:text-md lg:w-[75%] self-center flex justify-between">
-					<div>{startTime.toLocaleTimeString()}</div>
-					<div className="hidden lg:block">{quarterTimeString}</div>
-					<div>{midTimeString}</div>
-					<div className="hidden lg:block">{threeQuarterTimeString}</div>
-					<div>{endTime.toLocaleTimeString()}</div>
-				</section>
+				{/* Time stamps: */}
+				<TimeLine startTime={data.startTime} endTime={data.endTime} />
 			</div>
 		</main>
 	);
