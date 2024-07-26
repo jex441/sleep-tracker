@@ -3,7 +3,7 @@
 import React from "react";
 import { LineChart } from "@mui/x-charts/LineChart";
 
-export default function MUILineChart({
+export default function MobileMUILineChart({
 	title,
 	data,
 }: {
@@ -41,7 +41,7 @@ export default function MUILineChart({
 						data: yAxis,
 					},
 				]}
-				width={700}
+				width={400}
 				height={120}
 			/>
 		</div>

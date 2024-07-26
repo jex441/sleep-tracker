@@ -3,6 +3,7 @@ import Link from "next/link";
 import SelectInterval from "./_components/selectInterval";
 import SleepTimelineBar from "./_components/sleepTimelineBar";
 import Image from "next/image";
+import background from "/public/background.png";
 
 import landscape from "/public/landscape.png";
 import rectangle from "/public/rectangle.png";
@@ -87,6 +88,9 @@ export default async function Home({
 			<div className="absolute bottom-5 z-0">
 				<Image alt="bg" src={rectangle} width={1470} height={52} />
 			</div>
+			{/* <div className="absolute -bottom-10 left-0 -z-10">
+				<Image alt="bg" src={background} width={1400} height={415} />
+			</div> */}
 		</main>
 	);
 }

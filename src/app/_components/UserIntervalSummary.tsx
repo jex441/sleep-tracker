@@ -60,7 +60,7 @@ export default function UserIntervalSummary({
 	const color = scoreColor();
 
 	return (
-		<div className="h-[500px] w-[400px] shadow-lg bg-deep/95 text-white flex flex-col p-4 flex justify-center items-center rounded-lg">
+		<div className="h-[550px] w-[400px] shadow-lg bg-deep/95 text-white flex flex-col p-4 flex justify-center items-center rounded-lg">
 			<PieChart
 				series={[
 					{
