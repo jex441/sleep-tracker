@@ -3,7 +3,7 @@ import {
 	getIntervalIds,
 	getUserAllTimeAverages,
 } from "../../_lib/data";
-import SelectInterval from "../../_components/selectInterval";
+import SelectInterval from "../../_components/SelectInterval";
 import UserIntervalSummary from "@/app/_components/UserIntervalSummary";
 import MobileUserIntervalSummary from "@/app/_components/MobileUserIntervalSummary";
 import UserAllTimeAveragesSummary from "@/app/_components/UserAllTimeAveragesSummary";

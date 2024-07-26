@@ -1,7 +1,7 @@
 import { getUsersOverview, getIntervalIds } from "@/app/_lib/data";
 import Link from "next/link";
-import SelectInterval from "./_components/selectInterval";
-import SleepTimelineBar from "./_components/sleepTimelineBar";
+import SelectInterval from "./_components/SelectInterval";
+import SleepTimelineBar from "./_components/SleepTimelineBar";
 
 import UserCard from "./_components/UserCard";
 import MetricsCard from "./_components/MetricsCard";
