@@ -55,12 +55,23 @@ export default function UserIntervalSummary({
 			return "#FA8B6C";
 		}
 		if (score < 70) {
-			return "#FA8B6C";
+			return "#E3B279";
 		} else {
 			return "#2C3D4F";
 		}
 	};
 	const color = scoreColor();
+
+	const caption = () => {
+		if (score < 50) {
+			return "Poor";
+		}
+		if (score < 70) {
+			return "Not Great";
+		} else {
+			return "Good";
+		}
+	};
 
 	return (
 		<div className="hidden h-[550px] w-[400px] shadow-lg bg-white/90 text-deep md:flex flex-col p-4 flex justify-center items-center rounded-lg">
@@ -73,11 +84,12 @@ export default function UserIntervalSummary({
 			/>
 			<span className="text-center">
 				<span className="text-lightgray">Sleep Fitness Score</span>
-				<h1 className="text-[68px]" style={{ color: color }}>
+				<h1 className="text-[58px]" style={{ color: color }}>
 					{score}
 				</h1>
+				<span style={{ color: color }}>{caption()}</span>
 			</span>
-			<span className="flex flex-row">
+			<span className="flex flex-row mt-4">
 				<h2 className="text-[34px] mr-1">
 					{time[0]}
 					<span className="text-lightgray">hr </span>
