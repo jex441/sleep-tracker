@@ -30,10 +30,10 @@ export default async function User({
 	// let allTimeData = await getUserAllTimeAverages(params.id);
 	return (
 		<main className="w-full flex min-h-screen flex-col justify-center lg:justify-start gap-1 p-5 lg:px-24">
-			<nav className="w-[400px] flex items-center flex-row lg:my-4">
+			<nav className="w-[400px] ml-4 mb-4 flex items-center flex-row lg:ml-0 lg:my-4">
 				<SelectInterval text={"Your sleep data for"} intervals={intervals} />
 			</nav>
-			<section className="w-full justify-center gap-6 items-center lg:justify-between flex flex-col lg:flex-row gap-2">
+			<section className="w-full justify-center lg:gap-6 items-center lg:justify-between flex flex-col lg:flex-row gap-2">
 				<UserIntervalSummary
 					score={data.intervals[0].score}
 					totalIntervalTime={data.totalIntervalTime}

@@ -82,15 +82,6 @@ export default async function Home({
 					);
 				})}
 			</div>
-			<div className="absolute bottom-0 z-10">
-				<Image alt="bg" src={landscape} width={1470} height={162} />
-			</div>
-			<div className="absolute bottom-5 z-0">
-				<Image alt="bg" src={rectangle} width={1470} height={52} />
-			</div>
-			{/* <div className="absolute -bottom-10 left-0 -z-10">
-				<Image alt="bg" src={background} width={1400} height={415} />
-			</div> */}
 		</main>
 	);
 }
