@@ -9,7 +9,7 @@ export default function UserCard({
 	highest: number;
 	lowest: number;
 }) {
-	const scoreColor = (score) => {
+	const scoreColor = (score: number) => {
 		if (score < 50) {
 			return "#FA8B6C";
 		}
