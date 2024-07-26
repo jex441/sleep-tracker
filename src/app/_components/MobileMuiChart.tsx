@@ -41,7 +41,7 @@ export default function MobileMUILineChart({
 						data: yAxis,
 					},
 				]}
-				width={400}
+				width={350}
 				height={120}
 			/>
 		</div>

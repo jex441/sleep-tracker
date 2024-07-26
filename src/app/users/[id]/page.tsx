@@ -60,7 +60,7 @@ export default async function User({
 					/>
 				</div>
 
-				<div className="flex lg:hidden flex-col flex-1 px-auto justify-start items-start h-full w-[400px] lg:w-auto">
+				<div className="flex lg:hidden flex-col flex-1 px-auto justify-start items-start h-full w-[350px] lg:w-auto">
 					<span className="text-deep">Heart Rate</span>
 					<MobileMuiChart
 						title={"Heart Rate"}
