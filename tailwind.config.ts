@@ -16,7 +16,7 @@ const config: Config = {
 			awake: "#E3B279",
 			light: "#3A648C",
 			out: "#535454",
-			danger: "#ffff00",
+			danger: "#FA5555",
 			lightbg: "#fff",
 		},
 		extend: {

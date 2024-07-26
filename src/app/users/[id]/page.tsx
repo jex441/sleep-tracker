@@ -12,6 +12,7 @@ import temp from "/public/temp.png";
 import UserIntervalSummary from "@/app/_components/UserIntervalSummary";
 import UserAllTimeAveragesSummary from "@/app/_components/UserAllTimeAveragesSummary";
 import LineChartComponent from "@/app/_components/LineChartComponent";
+import MUILineChart from "@/app/_components/MUILineChart";
 export default async function User({
 	params,
 	searchParams,
@@ -28,7 +29,7 @@ export default async function User({
 	let allTimeData = await getUserAllTimeAverages(params.id);
 	console.log("==>", (data.totalAwakeTime / data.totalIntervalTime) * 100);
 	return (
-		<main className="flex min-h-screen flex-col justify-start gap-5 px-24">
+		<main className="flex min-h-screen flex-col justify-start gap-5 px-1 lg:px-24">
 			<nav className="w-full flex items-center justify-between gap-4 flex-row m-1 md:md-6 lg:mx-10 lg:my-6">
 				<SelectInterval intervals={intervals} />
 			</nav>
@@ -45,9 +46,9 @@ export default async function User({
 					intervalAverageRespiratoryRate={data.intervalAverageRespiratoryRate}
 					intervalAverageTempBedC={data.intervalAverageTempBedC}
 				/>
-				<LineChartComponent data={data.intervals[0].timeseries.tempBedC} />
+				<MUILineChart data={data.intervals[0].timeseries.heartRate} />
 			</section>
-			<UserAllTimeAveragesSummary
+			{/* <UserAllTimeAveragesSummary
 				allTimeAverageScoreNum={allTimeData.allTimeAverageScoreNum}
 				allTimeAverageHeartRate={allTimeData.allTimeAverageHeartRate}
 				allTimeAverageRespiratoryRate={
@@ -55,7 +56,7 @@ export default async function User({
 				}
 				allTimeAverageTempBedC={allTimeData.allTimeAverageTempBedC}
 				allTimeAverageTempRoomC={allTimeData.allTimeAverageTempRoomC}
-			/>
+			/> */}
 		</main>
 	);
 }

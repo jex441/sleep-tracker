@@ -27,7 +27,6 @@ export default function intervalSleepTimes(interval: Interval) {
 		accum += duration;
 		return accum;
 	}, 0);
-	console.log("=?", (totalAwakeTime / totalIntervalTime) * 100);
 	return {
 		totalSleepTime,
 		totalDeepSleepTime,

@@ -46,27 +46,28 @@ export default function UserIntervalSummary({
 		{ value: awakePercent, color: "#E3B279" },
 		{ value: outPercent, color: "#535454" },
 	];
-	console.log(pieData);
-
+	const scoreColor = score < 50 ? "#FA5555" : "blue";
 	return (
-		<div className="h-[550px] w-[500px] shadow-lg bg-deep/95 text-white flex flex-col p-4 flex justify-center items-center rounded-lg">
+		<div className="h-[500px] w-[400px] shadow-lg bg-deep/95 text-white flex flex-col p-4 flex justify-center items-center rounded-lg">
 			<PieChart
 				series={[
 					{
 						data: pieData,
 						innerRadius: 80,
 						outerRadius: 90,
-						paddingAngle: 1,
-						cornerRadius: 2,
+						paddingAngle: 2,
+						cornerRadius: 1,
 						startAngle: -90,
-						endAngle: 180,
-						cx: 150,
+						endAngle: 360,
+						cx: 180,
 					},
 				]}
 			/>
 			<span className="text-center">
-				<h4>Sleep Fitness Score</h4>
-				<h1 className="text-[68px]">{score}</h1>
+				<span className="text-lightgray">Sleep Fitness Score</span>
+				<h1 className="text-[68px]" style={{ color: scoreColor }}>
+					{score}
+				</h1>
 			</span>
 			<span className="flex flex-row">
 				<h2 className="text-[34px] mr-1">
@@ -78,7 +79,7 @@ export default function UserIntervalSummary({
 					<span className="text-lightgray">min</span>
 				</h2>
 			</span>
-			<span className="flex flex-row justify-between my-4 w-full items-center">
+			<span className="flex flex-row justify-around my-4 w-full items-center">
 				<span className="flex justify-center gap-2 items-center">
 					<Image alt="avgHeartRate" width={22} height={22} src={heartlight} />
 					<h2 className="text-[28px]">{intervalAverageHeartRate}</h2>
