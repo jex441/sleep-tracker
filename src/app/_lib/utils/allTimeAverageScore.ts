@@ -1,5 +1,6 @@
 import Interval from "@/app/_types/Interval";
 
+// For getting a user's average score accross all intervals
 export default function allTimeAverageScore(data: Interval[]): number {
 	const scores = data.map((interval) => interval.score);
 

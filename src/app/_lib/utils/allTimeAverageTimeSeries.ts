@@ -1,5 +1,6 @@
 import Interval from "@/app/_types/Interval";
 
+// Will supply the average value across multiple interval's timeseries data with a given key (heartRate, tempBedC, etc)
 export default function allTimeAverageTimeSeries(
 	data: Interval[],
 	value: string

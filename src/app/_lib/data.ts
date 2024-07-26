@@ -1,15 +1,12 @@
-// Is this needed?
-"use server";
-
 import { getUsers, getUserSleepData } from "./requests";
 import { basicUserSleepData } from "./utils/basicUserSleepData";
 import allTimeAverageTimeSeries from "./utils/allTimeAverageTimeSeries";
 import allTimeAverageScore from "./utils/allTimeAverageScore";
 import intervalSleepTimes from "./utils/intervalSleepTimes";
 import intervalAverageTimeSeries from "./utils/intervalAverageTimeSeries";
-
 import Interval from "@/app/_types/Interval";
 
+// For getting the intervals to populate the drop down navigation
 export const getIntervalIds = async (): Promise<[]> => {
 	const users = await getUsers();
 
@@ -32,6 +29,7 @@ export const getIntervalIds = async (): Promise<[]> => {
 	return Array.from(intervalsSet) as [];
 };
 
+// For getting basic data about all users for one given interval (Home page data)
 export const getUsersOverview = async (intervalId: string | null = null) => {
 	const users = await getUsers();
 
@@ -74,6 +72,7 @@ export const getUsersOverview = async (intervalId: string | null = null) => {
 	return response;
 };
 
+// For getting all of a user's time series averages across intervals
 export const userTimeSeriesAverages = async (userId: string) => {
 	const data = await getUserSleepData(userId);
 	const allTimeAverageHeartRate = allTimeAverageTimeSeries(data, "heartRate");
@@ -97,6 +96,7 @@ export const userTimeSeriesAverages = async (userId: string) => {
 	};
 };
 
+// For getting the time series averages of a single sleep interval
 export const userIntervalTimeSeriesAverages = async (
 	userId: string,
 	intervalId: string
@@ -127,6 +127,7 @@ export const userIntervalTimeSeriesAverages = async (
 	};
 };
 
+// For getting detailed data about a single user's sleep interval
 export const getUserIntervalReport = async (
 	userId: string,
 	intervalId: string
@@ -148,6 +149,8 @@ export const getUserIntervalReport = async (
 	};
 };
 
+// For getting averages of all of a user's timeseries data across intervals
+// I believe this is redundant given we already have userTimeSeriesAverages
 export const getUserAllTimeAverages = async (userId: string) => {
 	const timeSeriesAverages = userTimeSeriesAverages(userId);
 	return timeSeriesAverages;

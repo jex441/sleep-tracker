@@ -1,5 +1,6 @@
 import Interval from "@/app/_types/Interval";
 
+// For getting various sleep state durations in seconds for a given interval
 export default function intervalSleepTimes(interval: Interval) {
 	let totalSleepTime = 0;
 	let totalAwakeTime = 0;
@@ -27,6 +28,7 @@ export default function intervalSleepTimes(interval: Interval) {
 		accum += duration;
 		return accum;
 	}, 0);
+
 	return {
 		totalSleepTime,
 		totalDeepSleepTime,
