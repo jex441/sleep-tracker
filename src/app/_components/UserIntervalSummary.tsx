@@ -46,7 +46,19 @@ export default function UserIntervalSummary({
 		{ value: awakePercent, color: "#E3B279" },
 		{ value: outPercent, color: "#535454" },
 	];
-	const scoreColor = score < 50 ? "#FA5555" : "blue";
+
+	const scoreColor = () => {
+		if (score < 50) {
+			return "#FA8B6C";
+		}
+		if (score < 70) {
+			return "#FA8B6C";
+		} else {
+			return "#E4F8FF";
+		}
+	};
+	const color = scoreColor();
+
 	return (
 		<div className="h-[500px] w-[400px] shadow-lg bg-deep/95 text-white flex flex-col p-4 flex justify-center items-center rounded-lg">
 			<PieChart
@@ -65,7 +77,7 @@ export default function UserIntervalSummary({
 			/>
 			<span className="text-center">
 				<span className="text-lightgray">Sleep Fitness Score</span>
-				<h1 className="text-[68px]" style={{ color: scoreColor }}>
+				<h1 className="text-[68px]" style={{ color: color }}>
 					{score}
 				</h1>
 			</span>

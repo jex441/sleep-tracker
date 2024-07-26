@@ -5,14 +5,11 @@ import {
 } from "../../_lib/data";
 
 import SelectInterval from "../../_components/selectInterval";
-import secondsConverter from "@/app/_lib/utils/secondsConverter";
-import Image from "next/image";
-import heart from "/public/heart.png";
-import temp from "/public/temp.png";
 import UserIntervalSummary from "@/app/_components/UserIntervalSummary";
 import UserAllTimeAveragesSummary from "@/app/_components/UserAllTimeAveragesSummary";
 import LineChartComponent from "@/app/_components/LineChartComponent";
 import MUILineChart from "@/app/_components/MUILineChart";
+import SparkLineChartComponent from "@/app/_components/SparkLineChartComponent";
 export default async function User({
 	params,
 	searchParams,
@@ -26,14 +23,13 @@ export default async function User({
 	const intervals: string[] = await getIntervalIds();
 	const query = searchParams?.query || intervals[0];
 	let data = await getUserIntervalReport(params.id, query);
-	let allTimeData = await getUserAllTimeAverages(params.id);
-	console.log("==>", (data.totalAwakeTime / data.totalIntervalTime) * 100);
+	// let allTimeData = await getUserAllTimeAverages(params.id);
 	return (
-		<main className="flex min-h-screen flex-col justify-start gap-5 px-1 lg:px-24">
-			<nav className="w-full flex items-center justify-between gap-4 flex-row m-1 md:md-6 lg:mx-10 lg:my-6">
-				<SelectInterval intervals={intervals} />
+		<main className="w-full flex min-h-screen flex-col justify-center lg:justify-start gap-5 p-5 lg:px-24">
+			<nav className="w-[400px] flex items-center flex-row lg:my-6">
+				<SelectInterval text={"Your sleep data for"} intervals={intervals} />
 			</nav>
-			<section className="w-full flex flex-row gap-4">
+			<section className="w-full justify-center items-center lg:justify-between flex flex-col lg:flex-row gap-2">
 				<UserIntervalSummary
 					score={data.intervals[0].score}
 					totalIntervalTime={data.totalIntervalTime}
@@ -46,7 +42,20 @@ export default async function User({
 					intervalAverageRespiratoryRate={data.intervalAverageRespiratoryRate}
 					intervalAverageTempBedC={data.intervalAverageTempBedC}
 				/>
-				<MUILineChart data={data.intervals[0].timeseries.heartRate} />
+				<div className="flex flex-1 flex-col gap-3 h-full w-[400px] lg:w-auto">
+					<span className="text-deep">Heart Rate</span>
+					<SparkLineChartComponent
+						data={data.intervals[0].timeseries.heartRate}
+					/>
+					<span className="text-deep">Respitory Rate</span>
+					<SparkLineChartComponent
+						data={data.intervals[0].timeseries.respiratoryRate}
+					/>
+					<span className="text-deep">Bed Temperature Celsius</span>
+					<SparkLineChartComponent
+						data={data.intervals[0].timeseries.tempBedC}
+					/>
+				</div>
 			</section>
 			{/* <UserAllTimeAveragesSummary
 				allTimeAverageScoreNum={allTimeData.allTimeAverageScoreNum}
