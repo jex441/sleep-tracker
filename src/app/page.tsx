@@ -2,11 +2,7 @@ import { getUsersOverview, getIntervalIds } from "@/app/_lib/data";
 import Link from "next/link";
 import SelectInterval from "./_components/selectInterval";
 import SleepTimelineBar from "./_components/sleepTimelineBar";
-import Image from "next/image";
-import background from "/public/background.png";
 
-import landscape from "/public/landscape.png";
-import rectangle from "/public/rectangle.png";
 import UserCard from "./_components/UserCard";
 import MetricsCard from "./_components/MetricsCard";
 
@@ -85,5 +81,3 @@ export default async function Home({
 		</main>
 	);
 }
-
-// need total

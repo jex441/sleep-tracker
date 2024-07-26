@@ -1,6 +1,3 @@
-import Image from "next/image";
-
-import background from "/public/background.png";
 import {
 	getUserIntervalReport,
 	getIntervalIds,
@@ -9,11 +6,9 @@ import {
 import SelectInterval from "../../_components/selectInterval";
 import UserIntervalSummary from "@/app/_components/UserIntervalSummary";
 import UserAllTimeAveragesSummary from "@/app/_components/UserAllTimeAveragesSummary";
-import LineChartComponent from "@/app/_components/LineChartComponent";
 import MUILineChart from "@/app/_components/MUILineChart";
 import MobileMuiChart from "@/app/_components/MobileMuiChart";
 
-import SparkLineChartComponent from "@/app/_components/SparkLineChartComponent";
 export default async function User({
 	params,
 	searchParams,
