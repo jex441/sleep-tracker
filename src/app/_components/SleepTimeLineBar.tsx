@@ -22,7 +22,7 @@ export default function SleepTimeline({
 	const delayPercent = (delaySeconds / totalTimeInSeconds) * 100;
 	const delayString = `${delayPercent}%`;
 	return (
-		<div className="h-[60px] lg:h-[100px] w-[100%] bg-out/25 flex flex-row justify-start rounded-lg drop-shadow-lg">
+		<div className="h-[60px] lg:h-[100px] w-[100%] bg-out/25 flex flex-row justify-start rounded-lg drop-shadow-lg timeline-bar">
 			{/* Padding for start time delay */}
 			{delayPercent > 0 && <div style={{ width: delayString }}></div>}
 			{/* Render a color coded progress bar that varies depending on the stage and its duration */}

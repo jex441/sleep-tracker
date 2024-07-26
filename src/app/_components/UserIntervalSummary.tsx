@@ -83,7 +83,7 @@ export default function UserIntervalSummary({
 				totalOutTime={totalOutTime}
 			/>
 			<span className="text-center">
-				<span className="text-lightgray">Sleep Fitness Score</span>
+				<span className="text-lightgray sleep-score">Sleep Fitness Score</span>
 				<h1 className="text-[58px]" style={{ color: color }}>
 					{score}
 				</h1>
