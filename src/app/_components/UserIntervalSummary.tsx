@@ -10,6 +10,7 @@ import temp from "/public/temp.png";
 import resp from "/public/heart.png";
 import bed from "/public/bedtemp.png";
 import sleep from "/public/sleep.png";
+import AppPieChart from "./AppPieChart";
 
 export default function UserIntervalSummary({
 	score,
@@ -63,19 +64,12 @@ export default function UserIntervalSummary({
 
 	return (
 		<div className="h-[550px] w-[400px] shadow-lg bg-white/90 text-deep flex flex-col p-4 flex justify-center items-center rounded-lg">
-			<PieChart
-				series={[
-					{
-						data: pieData,
-						innerRadius: 80,
-						outerRadius: 90,
-						paddingAngle: 2,
-						cornerRadius: 1,
-						startAngle: -90,
-						endAngle: 360,
-						cx: 180,
-					},
-				]}
+			<AppPieChart
+				totalDeepSleepTime={totalDeepSleepTime}
+				totalIntervalTime={totalIntervalTime}
+				totalAwakeTime={totalAwakeTime}
+				totalLightSleepTime={totalLightSleepTime}
+				totalOutTime={totalOutTime}
 			/>
 			<span className="text-center">
 				<span className="text-lightgray">Sleep Fitness Score</span>
