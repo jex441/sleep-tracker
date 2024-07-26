@@ -1,7 +1,7 @@
 import { getUsers, getUserSleepData } from "./requests";
 import { basicUserSleepData } from "./utils/basicUserSleepData";
 import allTimeAverageTimeSeries from "./utils/allTimeAverageTimeSeries";
-import allTimeAverageScore from "./utils/allTimeAverageScore";
+import allTimeAverageScoreFunction from "./utils/allTimeAverageScoreFunction";
 import intervalSleepTimes from "./utils/intervalSleepTimes";
 import intervalAverageTimeSeries from "./utils/intervalAverageTimeSeries";
 import Interval from "@/app/_types/Interval";
@@ -84,13 +84,13 @@ export const userTimeSeriesAverages = async (userId: string) => {
 	const allTimeAverageTempRoomC = allTimeAverageTimeSeries(data, "tempRoomC");
 	// const allTimeAverageTnt = allTimeAverageTimeSeries(data, "tnt"); returns 1
 
-	const allTimeAverageScoreNum = allTimeAverageScore(data);
+	const { allTimeAverageScore } = allTimeAverageScoreFunction(data);
 	const sleepTimes = intervalSleepTimes(data[0]);
 
 	return {
 		allTimeAverageHeartRate,
+		allTimeAverageScore,
 		allTimeAverageRespiratoryRate,
-		allTimeAverageScoreNum,
 		allTimeAverageTempBedC,
 		allTimeAverageTempRoomC,
 	};

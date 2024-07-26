@@ -72,7 +72,11 @@ export default async function Home({
 						<Link key={user.id} href={`/users/${user.id}?query=${query}`}>
 							{/* Timeline row: */}
 							<section className="w-full my-2 flex gap-1 lg:gap-4 flex-col lg:flex-row">
-								<UserCard name={user.name} />
+								<UserCard
+									name={user.name}
+									highest={user.highest}
+									lowest={user.lowest}
+								/>
 								<MobileMetricsCard
 									name={user.name}
 									score={user.intervals[0].score}

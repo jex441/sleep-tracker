@@ -1,5 +1,6 @@
 import { getUser, getUserSleepData } from "../requests";
 import Interval from "@/app/_types/Interval";
+import allTimeAverageScoreFunction from "./allTimeAverageScoreFunction";
 
 export const basicUserSleepData = async (
 	userId: string,
@@ -59,9 +60,16 @@ export const basicUserSleepData = async (
 			avgTempBedC: avgTempBedC,
 		};
 	});
+
+	const allUserSleepData = await getUserSleepData(userId);
+
+	const { highest, lowest } = allTimeAverageScoreFunction(allUserSleepData);
+
 	const response = {
 		...user,
 		intervals: formattedData,
+		highest: highest,
+		lowest: lowest,
 	};
 
 	return response;
