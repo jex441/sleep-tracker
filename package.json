@@ -15,8 +15,7 @@
     "@mui/x-charts": "^7.11.1",
     "next": "14.2.5",
     "react": "^18",
-    "react-dom": "^18",
-    "victory": "^37.0.2"
+    "react-dom": "^18"
   },
   "devDependencies": {
     "@types/node": "^20",
