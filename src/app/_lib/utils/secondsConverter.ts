@@ -3,5 +3,5 @@ export default function secondsConverter(duration: number) {
 	let remainder = duration % 3600;
 	let hoursNum = Math.floor(hours);
 	let remainderNum = Math.floor(remainder / 60);
-	return hoursNum + "hr" + " " + remainderNum + "min";
+	return [hoursNum, remainderNum];
 }

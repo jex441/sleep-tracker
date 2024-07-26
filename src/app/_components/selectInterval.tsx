@@ -2,7 +2,13 @@
 
 import { useSearchParams, usePathname, useRouter } from "next/navigation";
 
-export default function SelectInterval({ intervals }: { intervals: string[] }) {
+export default function SelectInterval({
+	text,
+	intervals,
+}: {
+	text: string;
+	intervals: string[];
+}) {
 	const searchParams = useSearchParams();
 	const pathname = usePathname();
 	const { replace } = useRouter();
@@ -23,7 +29,7 @@ export default function SelectInterval({ intervals }: { intervals: string[] }) {
 				htmlFor="intervals"
 				className="hidden text-sm lg:text-lg lg:block text-deep"
 			>
-				Your family{"'"}s sleep data for
+				{text}
 			</label>
 			<select
 				name="intervals"

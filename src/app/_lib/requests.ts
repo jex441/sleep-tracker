@@ -20,9 +20,9 @@ export const getUserSleepData = async (
 	intervalId: string | null = null
 ): Promise<Interval[]> => {
 	const response = await fetch(`${baseUrl}/${userId}.json`);
+
 	const data = await response.json();
 	const intervals: Interval[] = data.intervals;
-
 	if (intervalId !== null) {
 		const result = intervals.filter(
 			(interval: Interval) => interval.ts.split("T")[0] === intervalId

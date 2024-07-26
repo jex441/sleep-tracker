@@ -1,7 +1,14 @@
+// Is this needed?
 "use server";
 
 import { getUsers, getUserSleepData } from "./requests";
 import { basicUserSleepData } from "./utils/basicUserSleepData";
+import allTimeAverageTimeSeries from "./utils/allTimeAverageTimeSeries";
+import allTimeAverageScore from "./utils/allTimeAverageScore";
+import intervalSleepTimes from "./utils/intervalSleepTimes";
+import intervalAverageTimeSeries from "./utils/intervalAverageTimeSeries";
+
+import Interval from "@/app/_types/Interval";
 
 export const getIntervalIds = async (): Promise<[]> => {
 	const users = await getUsers();
@@ -65,4 +72,83 @@ export const getUsersOverview = async (intervalId: string | null = null) => {
 		users: basicUsersData,
 	};
 	return response;
+};
+
+export const userTimeSeriesAverages = async (userId: string) => {
+	const data = await getUserSleepData(userId);
+	const allTimeAverageHeartRate = allTimeAverageTimeSeries(data, "heartRate");
+	const allTimeAverageRespiratoryRate = allTimeAverageTimeSeries(
+		data,
+		"respiratoryRate"
+	);
+	const allTimeAverageTempBedC = allTimeAverageTimeSeries(data, "tempBedC");
+	const allTimeAverageTempRoomC = allTimeAverageTimeSeries(data, "tempRoomC");
+	// const allTimeAverageTnt = allTimeAverageTimeSeries(data, "tnt"); returns 1
+
+	const allTimeAverageScoreNum = allTimeAverageScore(data);
+	const sleepTimes = intervalSleepTimes(data[0]);
+
+	return {
+		allTimeAverageHeartRate,
+		allTimeAverageRespiratoryRate,
+		allTimeAverageScoreNum,
+		allTimeAverageTempBedC,
+		allTimeAverageTempRoomC,
+	};
+};
+
+export const userIntervalTimeSeriesAverages = async (
+	userId: string,
+	intervalId: string
+) => {
+	const data = await getUserSleepData(userId, intervalId);
+	const intervalAverageHeartRate = intervalAverageTimeSeries(
+		data[0],
+		"heartRate"
+	);
+	const intervalAverageRespiratoryRate = intervalAverageTimeSeries(
+		data[0],
+		"respiratoryRate"
+	);
+	const intervalAverageTempBedC = intervalAverageTimeSeries(
+		data[0],
+		"tempBedC"
+	);
+	const intervalAverageTempRoomC = intervalAverageTimeSeries(
+		data[0],
+		"tempRoomC"
+	);
+
+	return {
+		intervalAverageHeartRate,
+		intervalAverageRespiratoryRate,
+		intervalAverageTempBedC,
+		intervalAverageTempRoomC,
+	};
+};
+
+export const getUserIntervalReport = async (
+	userId: string,
+	intervalId: string
+) => {
+	const interval: Interval[] = await getUserSleepData(userId, intervalId);
+
+	const intervalSleepTimesData = intervalSleepTimes(interval[0]);
+	const intervalTimeSeriesAveragesData = await userIntervalTimeSeriesAverages(
+		userId,
+		intervalId
+	);
+
+	const basicIntervalData = await basicUserSleepData(userId, intervalId);
+
+	return {
+		...basicIntervalData,
+		...intervalSleepTimesData,
+		...intervalTimeSeriesAveragesData,
+	};
+};
+
+export const getUserAllTimeAverages = async (userId: string) => {
+	const timeSeriesAverages = userTimeSeriesAverages(userId);
+	return timeSeriesAverages;
 };

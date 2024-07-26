@@ -33,7 +33,9 @@ export default function SleepTimeline({
 				return (
 					<div
 						key={String(duration) + stage}
-						className={`${bgcolor} block ${idx === 0}`}
+						className={`${bgcolor} block ${idx === 0 && "rounded-l-lg"} ${
+							idx === interval.stages.length - 1 && "rounded-r-lg"
+						}`}
 						style={{ width: width }}
 					></div>
 				);

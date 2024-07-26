@@ -7,4 +7,5 @@ export default interface TimeSeries {
 	respitoryRate: TimeValuePair[];
 	heartRate: TimeValuePair[];
 	heating: TimeValuePair[];
+	[key: string]: any;
 }
