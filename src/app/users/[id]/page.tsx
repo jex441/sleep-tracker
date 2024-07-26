@@ -24,8 +24,8 @@ export default async function User({
 	let data = await getUserIntervalReport(params.id, query);
 	// let allTimeData = await getUserAllTimeAverages(params.id);
 	return (
-		<main className="w-full flex min-h-screen flex-col justify-center lg:justify-start gap-1 p-5 lg:px-24">
-			<nav className="w-[400px] ml-4 mb-4 flex items-center flex-row lg:ml-0 lg:my-4">
+		<main className="w-full flex min-h-screen flex-col justify-center lg:justify-start gap-1 p-4 lg:px-24">
+			<nav className="w-[350px] ml-4 mb-4 flex items-center flex-row lg:ml-0 lg:my-4">
 				<SelectInterval text={"Your sleep data for"} intervals={intervals} />
 			</nav>
 			<section className="w-full justify-center lg:gap-6 items-center lg:justify-between flex flex-col lg:flex-row gap-2">

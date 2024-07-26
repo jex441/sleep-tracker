@@ -5,6 +5,7 @@ import SleepTimelineBar from "./_components/sleepTimelineBar";
 
 import UserCard from "./_components/UserCard";
 import MetricsCard from "./_components/MetricsCard";
+import MobileMetricsCard from "./_components/MobileMetricsCard";
 
 export default async function Home({
 	searchParams,
@@ -60,8 +61,14 @@ export default async function Home({
 					return (
 						<Link key={user.id} href={`/users/${user.id}?query=${query}`}>
 							{/* Timeline row: */}
-							<section className="w-full my-2 flex gap-1 lg:gap-4 flex-row">
+							<section className="w-full my-2 flex gap-1 lg:gap-4 flex-col lg:flex-row">
 								<UserCard name={user.name} />
+								<MobileMetricsCard
+									name={user.name}
+									score={user.intervals[0].score}
+									avgHeartRate={user.intervals[0].avgHeartRate}
+									avgTempBedC={user.intervals[0].avgTempBedC}
+								/>
 								{/* Color Coded Bar Denoting User's Sleep Data */}
 								<SleepTimelineBar
 									startTime={data.startTime}
