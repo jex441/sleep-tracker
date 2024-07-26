@@ -31,7 +31,10 @@ export default function MetricsCard({
 			<span className="hidden lg:block text-xs text-secondary lg:text-sm">
 				Sleep Score
 			</span>
-			<span className={`lg:text-[24px] font-bold`} style={{ color: color }}>
+			<span
+				className={`lg:text-[24px] font-bold sleep-score`}
+				style={{ color: color }}
+			>
 				{score}
 			</span>
 			<div className="flex flex-col lg:flex-row lg:justify-around w-full">
