@@ -3,11 +3,6 @@
 import { PieChart } from "@mui/x-charts/PieChart";
 
 import React from "react";
-import secondsConverter from "@/app/_lib/utils/secondsConverter";
-import Image from "next/image";
-import heart from "/public/heart.png";
-import temp from "/public/temp.png";
-import bed from "/public/bedtemp.png";
 
 export default function AppPieChart({
 	totalDeepSleepTime,
